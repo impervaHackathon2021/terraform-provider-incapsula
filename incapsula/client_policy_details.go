@@ -56,9 +56,7 @@ type NotificationPolicyFull struct {
 
 // Indicates whether policy is enabled or disabled.
 
-
 // Subtype of notification policy. Example values include: ‘account_notifications’; ‘website_notifications’; ‘certificate_management_notifications’
-
 
 // CreateJSONBody defines parameters for Create.
 type CreateJSONBody NotificationPolicyFull
