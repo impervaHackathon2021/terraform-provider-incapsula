@@ -10,6 +10,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"net/url"
 	"strings"
@@ -173,6 +174,8 @@ func (c *DemoClient) CreateWithBody(ctx context.Context, contentType string, bod
 }
 
 func (c *DemoClient) Create(ctx context.Context, body CreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	log.Printf("**********[INFO] ****************CERATE CLIENT")
+
 	req, err := NewCreateRequest(c.Server, body)
 	if err != nil {
 		return nil, err
@@ -197,6 +200,8 @@ func (c *DemoClient) Delete(ctx context.Context, policyId int, reqEditors ...Req
 }
 
 func (c *DemoClient) Get(ctx context.Context, policyId int, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	log.Printf("**********[INFO] ****************CERATE GET")
+
 	req, err := NewGetRequest(c.Server, policyId)
 	if err != nil {
 		return nil, err
@@ -221,6 +226,8 @@ func (c *DemoClient) UpdateWithBody(ctx context.Context, policyId int, contentTy
 }
 
 func (c *DemoClient) Update(ctx context.Context, policyId int, body UpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	log.Printf("*****client Update")
+
 	req, err := NewUpdateRequest(c.Server, policyId, body)
 	if err != nil {
 		return nil, err
@@ -229,6 +236,8 @@ func (c *DemoClient) Update(ctx context.Context, policyId int, body UpdateJSONRe
 	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
 		return nil, err
 	}
+	log.Printf("**********Before request")
+	log.Printf("\n\n%v", req)
 	return c.Client.Do(req)
 }
 
